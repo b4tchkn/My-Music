@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
 
@@ -20,6 +21,22 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    //シンバルの音源ファイルを指定
+    let cymbalPath = Bundle.main.bundleURL.appendingPathComponent("cymbal.mp3")
 
+    //シンバル用のプレイヤーインスタンス作成
+    var cymbalPlayer = AVAudioPlayer()
+    
+    @IBAction func cymbal(_ sender: Any) {
+        do {
+        //シンバル用のプレイヤーに音源ファイル名を指定
+        cymbalPlayer = try AVAudioPlayer(contentsOf: cymbalPath, fileTypeHint: nil)
+        
+        //シンバルの音源再生
+        cymbalPlayer.play()
+        } catch {
+            print("cymbal error")
+        }
+    }
 }
 
