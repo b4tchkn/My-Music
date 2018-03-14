@@ -28,15 +28,7 @@ class ViewController: UIViewController {
     var cymbalPlayer = AVAudioPlayer()
     
     @IBAction func cymbal(_ sender: Any) {
-        do {
-        //シンバル用のプレイヤーに音源ファイル名を指定
-        cymbalPlayer = try AVAudioPlayer(contentsOf: cymbalPath, fileTypeHint: nil)
-        
-        //シンバルの音源再生
-        cymbalPlayer.play()
-        } catch {
-            print("cymbal error")
-        }
+        soundPlayer(player: &cymbalPlayer, path: cymbalPath, count: 0) 
     }
     //ギター音源ファイルを指定
     let guitarPath = Bundle.main.bundleURL.appendingPathComponent("guitar.mp3")
@@ -45,14 +37,7 @@ class ViewController: UIViewController {
     var guitarPlayer = AVAudioPlayer()
     
     @IBAction func guitar(_ sender: Any) {
-        do {
-            //ギター用のプレイヤーに音源ファイルを指定
-            guitarPlayer = try AVAudioPlayer(contentsOf: guitarPath, fileTypeHint: nil)
-            
-            guitarPlayer.play()
-        } catch {
-            print("guitar error")
-        }
+        soundPlayer(player: &guitarPlayer, path: guitarPath, count: 0)
     }
     
     let backMusicPath = Bundle.main.bundleURL.appendingPathComponent("backmusic.mp3")
@@ -60,13 +45,7 @@ class ViewController: UIViewController {
     var backMusicPlayer = AVAudioPlayer()
     
     @IBAction func play(_ sender: Any) {
-        do {
-            backMusicPlayer = try AVAudioPlayer(contentsOf: backMusicPath, fileTypeHint: nil)
-            backMusicPlayer.numberOfLoops = -1
-            backMusicPlayer.play()
-        } catch {
-            print("backmusic error")
-        }
+        soundPlayer(player: &backMusicPlayer, path: backMusicPath, count: -1)
     }
     
     @IBAction func stop(_ sender: Any) {
